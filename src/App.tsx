@@ -1,24 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useEffect, useRef} from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import { Stage, Layer, Group, Rect } from "react-konva";
+import { getCenterX, getCenterY } from './utils/position';
+import Heart from './components/Heart';
+import { HeartEngine } from './heart/canvas';
 
 function App() {
+  const ref = useRef<HTMLCanvasElement>();
+  useEffect(() => {
+    const heart = new HeartEngine(ref);
+    heart.play();
+  }, []);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {/* <Stage width={window.innerWidth} height={window.innerHeight}>
+        <Heart />
+      </Stage> */}
+      <canvas width={window.innerWidth} height={window.innerHeight} ref={ref as any} />
     </div>
   );
 }
