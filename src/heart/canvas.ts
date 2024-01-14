@@ -93,14 +93,15 @@ export class HeartEngine {
       (item) => new Point(this.drawCtx, item)
     );
     for (const dot of offsetDotList) {
-      // dot.draw();
+      dot.draw();
     }
   }
 
   drawHeart(originPoints: number[]) {
     const heartPoints = pointListToPair(originPoints);
     const ctx = this.drawCtx;
-    ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+    ctx.fillStyle = "rgba(255,255,255,0.6)";
+    ctx.fillRect(0, 0, window.innerWidth, window.innerHeight);
     const [beginX, beginY] = heartPoints[0];
     ctx.save();
     ctx.moveTo(beginX, beginY);
